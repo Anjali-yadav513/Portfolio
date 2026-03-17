@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+    <h1><%= data.name %></h1>
+    <h2><%= data.title %></h2>
+
+    <h3>About</h3>
+    <p><%= data.about %></p>
+
+     <h3>Skills</h3>
+    <p><%= data.skills %></p>
+
+    <h3>Projects</h3>
+
+    <ul>
+        <% data.projects.forEach(project => { %>
+            <li><strong><%= project.name %></strong> - <a href="<%= project.link %>">View</a></li>
+        <% }) %>
+    </ul>
+    <h3>Contact</h3>
+    <p><a href="<%= data.github %>">GitHub</a></p>
+    <p><a href="<%= data.linkedin %>">Linkedin</a></p>
+
+    <hr>
+
+    <p> Share your portfolio:</p>
+    <input value="http://localhost:3000/portfolio<%= data.username %>" readonly>
+
+    <button onclick="downloadPDF()">Download PDF</button>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script> 
+
+    <script>
+     function downloadPDF() {
+     html2pdf().from(document.body).save("portfolio.pdf");    
+     }
+    </script>
+
+
+</body>
+</html>
